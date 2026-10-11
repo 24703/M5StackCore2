@@ -52,13 +52,14 @@ CORE2のUSBチップには **CP2104** と **CH9102F** の2種類が存在しま�
 
 1. PlatformIO Homeのタブから **「Libraries」** を開く。<br>
    <img width="359" height="245" alt="image" src="https://github.com/user-attachments/assets/67cd31e2-9285-4a7e-bed0-cc3cb2c56160" />
-3. 検索窓に `core2` と入力して、少し下にスクロールし **「M5Core2」** を選択します。
+2. 検索窓に `M5Unified` と入力して、少し下にスクロールし **「M5Unified」** を選択します。
    <img width="353" height="197" alt="image" src="https://github.com/user-attachments/assets/effa9608-c177-4c30-9381-705202501da4" />
    <img width="607" height="123" alt="image" src="https://github.com/user-attachments/assets/076c6e62-78f3-47ee-a949-a6a7d5171f1a" />
-5. **「Add to Project」** をクリックし、作成したプロジェクト名を選択して追加します。
+3. **「Add to Project」** をクリックし、作成したプロジェクト名を選択して追加します。
    <img width="320" height="188" alt="image" src="https://github.com/user-attachments/assets/c39a4172-d237-42d0-b8e7-989c24ec8101" />
    <img width="381" height="141" alt="image" src="https://github.com/user-attachments/assets/56ad2b93-7c2b-4dfd-a6b7-089516efeebf" />
-7. 画面表示の拡張用として、必要に応じて **`LovyanGFX`** ライブラリも同様の手順で追加しておくと便利です。
+※従来の M5Core2 専用ライブラリは開発が実質終了しており、最新の開発環境（ESP32 ボード定義 v3.x など）では正しく動かないトラブルが報告されています。そのため、現在のM5Stack開発では、すべての機種を共通して動かせる最新の「M5Unified」ライブラリへの移行が強く推奨されています。<br>
+5. 画面表示の拡張用として、必要に応じて **`LovyanGFX`** ライブラリも同様の手順で追加しておくと便利です。
 
 ---
 
@@ -67,41 +68,49 @@ CORE2のUSBチップには **CP2104** と **CH9102F** の2種類が存在しま�
 プロジェクト内の `src/main.cpp` を開き、以下のサンプルコード（ボタン操作および振動モータ制御の例）をコピー＆ペーストします。
 
 ```cpp
-#include <M5Core2.h>
+#include <M5Unified.h>
 
 // 初期設定 ----------------------------------------------------
 void setup() {
-  M5.begin();                      // 本体初期化
-  M5.Lcd.setTextColor(YELLOW);     // 文字色
-  M5.Lcd.setTextSize(2);           // 文字サイズ
-  M5.Lcd.setCursor(65, 10);        // 座標指定
-  M5.Lcd.println("Button example");
-  M5.Lcd.setCursor(3, 35);         // 座標指定
-  M5.Lcd.println("Press button B for 700ms");
-  M5.Lcd.println("to clear screen.");
-  M5.Lcd.setTextColor(RED);        // 文字色
+  auto cfg = M5.config();
+  M5.begin(cfg);                       // 本体初期化
+
+  M5.Display.setTextColor(YELLOW);     // 文字色
+  M5.Display.setTextSize(2);           // 文字サイズ
+  M5.Display.setCursor(65, 10);        // 座標指定
+  M5.Display.println("Button example");
+  M5.Display.setCursor(3, 35);         // 座標指定
+  M5.Display.println("Press button B for 700ms");
+  M5.Display.println("to clear screen.");
+  M5.Display.setTextColor(RED);        // 文字色
 }
 
 // メイン ------------------------------------------------------
 void loop() {
-  M5.update();                     // ボタン状態初期化
-  M5.Axp.SetLDOEnable(3, false);   // AXP_IO3 を false で振動モータ停止
+  M5.update();                         // ボタン状態更新
+  M5.Power.setVibration(0);            // 振動モータ停止 (強度0)
 
-  if (M5.BtnA.wasPressed() || M5.BtnA.pressedFor(1000, 200)) {
-    M5.Lcd.print('A');
-    M5.Axp.SetLDOEnable(3, true);  // 振動モータ動作
-  } else if (M5.BtnB.wasPressed() || M5.BtnB.pressedFor(1000, 200)) {
-    M5.Lcd.print('B');
-    M5.Axp.SetLDOEnable(3, true);  
-  } else if (M5.BtnC.wasPressed() || M5.BtnC.pressedFor(1000, 200)) {
-    M5.Lcd.print('C');
-    M5.Axp.SetLDOEnable(3, true);  
-  } else if (M5.BtnB.wasReleasefor(700)) {
-    M5.Lcd.clear(WHITE);           // 画面白クリア
-    M5.Lcd.setCursor(0, 0);
-    M5.Axp.SetLDOEnable(3, true);  
+  // 【解説】wasPressed（1回押した）または pressedFor(1000)（1秒以上押しっぱなし中）
+  if (M5.BtnA.wasPressed() || M5.BtnA.pressedFor(1000)) {
+    M5.Display.print('A');                                             
+    M5.Power.setVibration(128);                                        
+  } 
+  else if (M5.BtnB.pressedFor(1000) || M5.BtnB.wasPressed()) {
+    // 💡注意: 先に長押しのクリア判定（wasReleaseFor）に引っかからないよう、BtnBは通常処理をさせます
+    M5.Display.print('B');                                             
+    M5.Power.setVibration(128);                                        
+  } 
+  else if (M5.BtnC.wasPressed() || M5.BtnC.pressedFor(1000)) {
+    M5.Display.print('C');                                             
+    M5.Power.setVibration(128);                                        
+  } 
+  else if (M5.BtnB.wasReleaseFor(700)) {                            // BtnBが0.7秒以上押されて離したら
+    M5.Display.clear(WHITE);           // 画面白クリア
+    M5.Display.setCursor(0, 0);        // 座標指定
+    M5.Power.setVibration(128);        // 振動モータ動作 (強度128)
   }
-  delay(80);
+  
+  delay(80);  // 遅延時間（振動モータ動作時間 兼 連打速度の間隔）
 }
 
 ```
@@ -138,3 +147,63 @@ monitor_port = "COM6"      ; ご自身の環境のポート番号に変更
 
 1. M5Burnerを起動し、左メニューから `CORE` を選択します。
 2. プログラム一覧から **`Core2FactoryTest`** をダウンロードし、`Burn` を実行します。
+
+
+# M5Stack Core2 開発環境の M5Unified への移行手順
+
+M5Core2専用ライブラリ（`M5Core2.h`）は非推奨となったため、最新の統合ライブラリである **`M5Unified`** へ移行するための手順と、ビルドエラー（`multiple definition of 'M5'`）が発生した際の対処法です。
+
+---
+
+## 🛠️ 1. ソースコードの書き換え
+
+### ❌ 従来の書き方（非推奨）
+```cpp
+#include <M5Core2.h>
+
+void setup() {
+  M5.begin(); // ⚠️ 警告：'M5Core2::begin(...)' is deprecated
+  M5.Lcd.print("Hello World");
+}
+```
+
+### ⭕ 新しい書き方（M5Unified）
+```cpp
+#include <M5Unified.h> // M5Unifiedをインクルード
+
+void setup() {
+  auto cfg = M5.config();
+  M5.begin(cfg);          // 新しい初期化方法
+
+  M5.Display.print("Hello World"); // M5.Lcd から M5.Display に変更
+}
+```
+
+### 💡 主な変更点
+* **画面描画**: `M5.Lcd.〜` から **`M5.Display.〜`** に変更されました（M5GFXがベース）。
+* **ボタン処理**: `pressedFor(ms, repeat)` の第2引数（リピート間隔）が廃止され、**`pressedFor(ms)`**（引数1つ）になりました。連打を実装する場合は `loop()` 内の `delay()` で間隔を調整します。
+* **振動モーター**: `M5.Axp.SetLDOEnable(3, true/false)` の代わりに、共通命令の **`M5.Power.setVibration(強度)`**（0〜255）が使用可能です。
+
+---
+
+## 🚨 トラブルシューティング：`multiple definition of 'M5'` エラーの解決
+
+ビルド時に以下のエラーが発生した場合、古い `M5Core2` ライブラリと新しい `M5Unified` ライブラリが競合しています。
+> `multiple definition of 'M5'` / `first defined here`
+
+### PlatformIOでの対処手順
+
+1. **`platformio.ini` の修正**
+   `lib_deps` から `m5stack/M5Core2` を削除し、**`m5stack/M5Unified`** のみを残します。
+   ```ini
+   lib_deps =
+       m5stack/M5Unified
+   ```
+
+2. **キャッシュ・古いライブラリの完全削除**
+   * プロジェクト内の `.pio/libdeps/m5stack-core2/M5Core2` フォルダを**フォルダごと手動で削除**します。
+   * VS CodeのPlatformIOメニュー（アリのアイコン）から、**`Clean`** タスクを実行します。
+
+3. **再ビルド**
+   * 通常通り `Build` または `Upload` を実行すると、`M5Unified` のみが正しく読み込まれ、エラーが解消します。
+
