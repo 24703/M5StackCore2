@@ -57,8 +57,9 @@ CORE2のUSBチップには **CP2104** と **CH9102F** の2種類が存在しま�
    <img width="600" height="138" alt="image" src="https://github.com/user-attachments/assets/d6d0c0f1-7d0b-4fa5-9498-b080d4e4eca1" />
 
 3. **「Add to Project」** をクリックし、作成したプロジェクト名を選択して追加します。
-   <img width="320" height="188" alt="image" src="https://github.com/user-attachments/assets/c39a4172-d237-42d0-b8e7-989c24ec8101" />
-   <img width="381" height="141" alt="image" src="https://github.com/user-attachments/assets/56ad2b93-7c2b-4dfd-a6b7-089516efeebf" />
+  <img width="309" height="145" alt="image" src="https://github.com/user-attachments/assets/b9df7331-3b7c-402c-8af3-eddbf6d616ce" />
+　<img width="387" height="135" alt="image" src="https://github.com/user-attachments/assets/6b00630a-6604-4c2a-b263-d2f47a4e5c78" />
+
 ※従来の M5Core2 専用ライブラリは開発が実質終了しており、最新の開発環境（ESP32 ボード定義 v3.x など）では正しく動かないトラブルが報告されています。そのため、現在のM5Stack開発では、すべての機種を共通して動かせる最新の「M5Unified」ライブラリへの移行が強く推奨されています。<br>
 5. 画面表示の拡張用として、必要に応じて **`LovyanGFX`** ライブラリも同様の手順で追加しておくと便利です。
 
