@@ -19,6 +19,7 @@ File dataFile = SD.open("/TestFile.txt", FILE_READ);
   }
 
 ```
+シリアルモニタへの出力
 ```text
 72
 101
