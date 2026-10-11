@@ -61,6 +61,7 @@ CORE2のUSBチップには **CP2104** と **CH9102F** の2種類が存在しま�
 　<img width="387" height="135" alt="image" src="https://github.com/user-attachments/assets/6b00630a-6604-4c2a-b263-d2f47a4e5c78" />
 
 ※従来の M5Core2 専用ライブラリは開発が実質終了しており、最新の開発環境（ESP32 ボード定義 v3.x など）では正しく動かないトラブルが報告されています。そのため、現在のM5Stack開発では、すべての機種を共通して動かせる最新の「M5Unified」ライブラリへの移行が強く推奨されています。<br>
+ [M5Core2からM5Unifiedへの移行手順はこちら](MIGRATION.md)<br>
 5. 画面表示の拡張用として、必要に応じて **`LovyanGFX`** ライブラリも同様の手順で追加しておくと便利です。
 
 ---
