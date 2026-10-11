@@ -50,9 +50,15 @@ CORE2のUSBチップには **CP2104** と **CH9102F** の2種類が存在しま�
 
 ## 4. ライブラリのインストール
 
-1. PlatformIO Homeのタブから **「Libraries」** を開き、検索窓に `core2` と入力して **「M5Core2」** を選択します。
-2. **「Add to Project」** をクリックし、作成したプロジェクト名を選択して追加します。
-3. 画面表示の拡張用として、必要に応じて **`LovyanGFX`** ライブラリも同様の手順で追加しておくと便利です。
+1. PlatformIO Homeのタブから **「Libraries」** を開く。
+   <img width="359" height="245" alt="image" src="https://github.com/user-attachments/assets/67cd31e2-9285-4a7e-bed0-cc3cb2c56160" />
+3. 検索窓に `core2` と入力して、少し下にスクロールし **「M5Core2」** を選択します。
+   <img width="353" height="197" alt="image" src="https://github.com/user-attachments/assets/effa9608-c177-4c30-9381-705202501da4" />
+   <img width="607" height="123" alt="image" src="https://github.com/user-attachments/assets/076c6e62-78f3-47ee-a949-a6a7d5171f1a" />
+5. **「Add to Project」** をクリックし、作成したプロジェクト名を選択して追加します。
+   <img width="320" height="188" alt="image" src="https://github.com/user-attachments/assets/c39a4172-d237-42d0-b8e7-989c24ec8101" />
+   <img width="381" height="141" alt="image" src="https://github.com/user-attachments/assets/56ad2b93-7c2b-4dfd-a6b7-089516efeebf" />
+7. 画面表示の拡張用として、必要に応じて **`LovyanGFX`** ライブラリも同様の手順で追加しておくと便利です。
 
 ---
 
