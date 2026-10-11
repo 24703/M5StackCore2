@@ -54,7 +54,8 @@ CORE2のUSBチップには **CP2104** と **CH9102F** の2種類が存在しま�
    <img width="359" height="245" alt="image" src="https://github.com/user-attachments/assets/67cd31e2-9285-4a7e-bed0-cc3cb2c56160" />
 2. 検索窓に `M5Unified` と入力して、少し下にスクロールし **「M5Unified」** を選択します。
    <img width="353" height="197" alt="image" src="https://github.com/user-attachments/assets/effa9608-c177-4c30-9381-705202501da4" />
-   <img width="607" height="123" alt="image" src="https://github.com/user-attachments/assets/076c6e62-78f3-47ee-a949-a6a7d5171f1a" />
+   <img width="600" height="138" alt="image" src="https://github.com/user-attachments/assets/d6d0c0f1-7d0b-4fa5-9498-b080d4e4eca1" />
+
 3. **「Add to Project」** をクリックし、作成したプロジェクト名を選択して追加します。
    <img width="320" height="188" alt="image" src="https://github.com/user-attachments/assets/c39a4172-d237-42d0-b8e7-989c24ec8101" />
    <img width="381" height="141" alt="image" src="https://github.com/user-attachments/assets/56ad2b93-7c2b-4dfd-a6b7-089516efeebf" />
