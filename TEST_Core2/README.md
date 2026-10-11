@@ -50,7 +50,7 @@ CORE2のUSBチップには **CP2104** と **CH9102F** の2種類が存在しま�
 
 ## 4. ライブラリのインストール
 
-1. PlatformIO Homeのタブから **「Libraries」** を開く。</>
+1. PlatformIO Homeのタブから **「Libraries」** を開く。<br>
    <img width="359" height="245" alt="image" src="https://github.com/user-attachments/assets/67cd31e2-9285-4a7e-bed0-cc3cb2c56160" />
 3. 検索窓に `core2` と入力して、少し下にスクロールし **「M5Core2」** を選択します。
    <img width="353" height="197" alt="image" src="https://github.com/user-attachments/assets/effa9608-c177-4c30-9381-705202501da4" />
