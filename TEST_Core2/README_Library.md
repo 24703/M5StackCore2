@@ -44,14 +44,19 @@ void setup() {
 
 1. **`platformio.ini` の修正**
    `lib_deps` から `m5stack/M5Core2` を削除し、**`m5stack/M5Unified`** のみを残します。
-   ```ini
+   <img width="511" height="214" alt="image" src="https://github.com/user-attachments/assets/ae693517-28b4-46c2-8293-7d2ec7200bc6" />
+
+    ```ini
    lib_deps =
        m5stack/M5Unified
    ```
 
-2. **キャッシュ・古いライブラリの完全削除**
+3. **キャッシュ・古いライブラリの完全削除**
    * プロジェクト内の `.pio/libdeps/m5stack-core2/M5Core2` フォルダを**フォルダごと手動で削除**します。
+     <img width="450" height="279" alt="image" src="https://github.com/user-attachments/assets/63046295-b197-4b28-b1c5-972c4a7b6e11" />
    * VS CodeのPlatformIOメニュー（アリのアイコン）から、**`Clean`** タスクを実行します。
+    <img width="488" height="234" alt="image" src="https://github.com/user-attachments/assets/23ec3b73-2dc1-44c1-b641-649813471ecb" />
 
-3. **再ビルド**
+
+4. **再ビルド**
    * 通常通り `Build` または `Upload` を実行すると、`M5Unified` のみが正しく読み込まれ、エラーが解消します。
