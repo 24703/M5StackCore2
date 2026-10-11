@@ -7,6 +7,7 @@ M5Stack Core2でmicroSDカード内のデータ（SSIDとパスワード）を�
 SDカード内のテキストファイルに `Hello` という文字列を書き込んで読み出した際、画面やシリアルモニタに文字列ではなく以下のような数字が表示される現象が発生しました。<br>
 
 ```cpp
+//修正箇所の抜粋
 File dataFile = SD.open("/TestFile.txt", FILE_READ);
   if (dataFile) {
     Serial.println("--- TestFile.txt Contents ---");
