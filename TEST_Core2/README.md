@@ -108,7 +108,8 @@ void loop() {
 
 ### 書き込み方法
 
-画面左下の **「→」アイコン（Upload）** をクリックすると、コンパイルおよび書き込みが実行されます。ターミナルに `SUCCESS` と表示されたら完了です。
+画面左下の **「→」アイコン（Upload）** をクリックすると、コンパイルおよび書き込みが実行されます。ターミナルに `SUCCESS` と表示されたら完了です。<br>
+<img width="558" height="211" alt="image" src="https://github.com/user-attachments/assets/716a9c7d-afcc-4195-ad69-7bbf398c3831" />
 
 ---
 
