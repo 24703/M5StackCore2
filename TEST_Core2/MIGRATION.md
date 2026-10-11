@@ -60,4 +60,4 @@ void setup() {
 
 4. **再ビルド**
    * 通常通り `Build` または `Upload` を実行すると、`M5Unified` のみが正しく読み込まれ、エラーが解消します。
-[M5Core2からM5Unifiedへの移行手順はこちら](README.md)
+[M5Stack CORE2 PlatformIO 開発ガイドはこちらから](README.md)
