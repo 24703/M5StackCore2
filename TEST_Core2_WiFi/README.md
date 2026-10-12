@@ -1,23 +1,9 @@
 M5Stack Core2でmicroSDカード内のデータ（SSIDとパスワード）を読み出し、Wi-Fiへ自動接続するまでの開発プロセス、トラブルシューティング、および最終的なプログラムコードをまとめたREADMEです。
 ---
 📅 開発の軌跡とトラブルシューティング
-1. 初期のSDカード読み出し（数値が返ってくる問題）
+1. 初期のSDカード読み出し（数値が返ってくる問題）<br>
 【現象】
 SDカード内のテキストファイルに `Hello` という文字列を書き込んで読み出した際、画面やシリアルモニタに文字列ではなく以下のような数字が表示される現象が発生しました。<br>
-
-```cpp
-//修正箇所の抜粋
-File dataFile = SD.open("/TestFile.txt", FILE_READ);
-  if (dataFile) {
-    Serial.println("--- TestFile.txt Contents ---");
-    while (dataFile.available()) {
-      Serial.write(dataFile.read());
-    }
-    dataFile.close();
-  } else {
-    Serial.println("error opening TestFile.txt");
-  }
-
 ```
 シリアルモニタへの出力
 ```text
