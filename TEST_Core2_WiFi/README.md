@@ -60,7 +60,6 @@ M5.Display.print((char)dataFile.read());
 > ⚠️ **Wi-Fiに関する注意点**: ESP32（Core2）は **2.4GHz帯**（g/nなど）のWi-Fiにのみ対応しています。5GHz帯（a/acなど）のSSIDは接続できないため指定しないでください。<br>
 ---
 💻 最終的なソースコード (`src/main.cpp`)
-当初のコードにあった「`WiFi.begin()` へのString直接渡しによる不安定さ」「`delay(10)` の短さによるマイコン負荷（強制リセット原因）」「`WiFi.status` の括弧付け忘れバグ」をすべて修正した、完全に動作するリファクタリング済みのコードです。
 ```cpp
 #include <Arduino.h>
 #include <M5Unified.h>
